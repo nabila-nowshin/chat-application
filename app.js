@@ -4,6 +4,12 @@ const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const path = require("path");
 
+//internal exports
+const {
+  notFoundHandler,
+  errorHandler,
+} = require("./middlewares/common/errorHandler");
+
 const app = express();
 dotenv.config();
 
@@ -20,7 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //set view engine
-app.set("View engine", "ejs");
+app.set("view engine", "ejs");
 
 //set static folder
 app.use(express.static(path.join(__dirname, "public")));
@@ -32,7 +38,12 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 app.post("/", async (req, res) => {});
 
 //error handling
-//404 not found
+
+//404
+app.use(notFoundHandler);
+
+//common
+app.use(errorHandler);
 
 app.listen(process.env.PORT, () => {
   console.log(`App listening to port ${process.env.PORT}`);
