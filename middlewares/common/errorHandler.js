@@ -13,6 +13,7 @@ function errorHandler(err, req, res, next) {
   if (!res.locals.html) {
     res.render("error", {
       title: "error page",
+      status: res.statusCode,
     });
   } else {
     res.json(res.locals.error);
