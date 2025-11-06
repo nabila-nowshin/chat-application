@@ -20,7 +20,7 @@ dotenv.config();
 //database integration
 mongoose
   .connect(
-    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@tiptopgardeners.3nfx9jd.mongodb.net/?appName=TipTopGardeners`
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@tiptopgardeners.3nfx9jd.mongodb.net/chat-application`
   )
   .then(() => console.log("connection successful"))
   .catch((err) => console.log(err));
